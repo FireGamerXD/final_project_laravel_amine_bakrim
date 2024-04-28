@@ -1,21 +1,17 @@
 @extends('layouts.index')
 
 @section('content')
-<div class="flex flex-col md:flex-row w-full">
+
+<div class="flex flex-col h-screen md:flex-row w-full justify-around bg-gray-900">
     <div class="w-full md:w-1/4 p-4">
         <form method="POST" action="{{ route('event.store') }}">
             @csrf
             <!-- Name -->
             <div class="mt-4">
-                <x-input-label class="text-black" for="name" :value="__('Name')" />
+                <x-input-label class="text-black" for="name" :value="__('Your Name')" />
                 <x-text-input class="block mt-1 w-full" type="text" name="name" required autofocus autocomplete="name" />
             </div>
 
-            <!-- Descriptions -->
-            <div class="mt-4">
-                <x-input-label class="text-black" for="descriptions" :value="__('Descriptions')" />
-                <x-text-input class="block mt-1 w-full" type="text" name="descriptions" required autofocus autocomplete="descriptions" />
-            </div>
 
             <!-- Date Start -->
             <div class="mt-4">
@@ -43,42 +39,35 @@
 
             <!-- Locations -->
             <div class="mt-4">
-                <x-input-label class="text-black" for="locations" :value="__('Locations')" />
+                <x-input-label class="text-black" for="locations" :value="__('Table')" />
                 <x-text-input class="block mt-1 w-full" type="text" name="locations" required autocomplete="locations" />
-            </div>
-
-            <!-- Price -->
-            <div class="mt-4">
-                <x-input-label class="text-black" for="price" :value="__('Price')" />
-                <x-text-input class="block mt-1 w-full" type="number" name="price" required autocomplete="price" />
             </div>
             
             <!-- Submit Button -->
             <div class="flex items-center justify-end mt-4">
-                <button class="bg-gray-900 text-white px-4 py-2 rounded-md hover:bg-gray-800">Create</button>
+                <button class="bg-gray-600 text-white px-4 py-2 rounded-md hover:bg-gray-800">Create</button>
             </div>
         </form>
     </div>
-    <div class="w-full md:w-3/4 p-4">
+    <div class=" p-4">
         <div id="calendar" class="w-full"></div>
     </div>
 </div>
-<div class="flex flex-col md:flex-row p-4">
+<div class="flex flex-col md:flex-row p-4 bg-gray-900">
     @foreach ($events as $event)
     <div class="w-full md:w-1/3 p-4">
-        <div class="max-w-xs rounded overflow-hidden shadow-lg bg-gray-900 text-white">
-            <img class="w-full" src="{{asset("img/Conference-Center.jpg")}}" alt="Event Image">
+        <div class="max-w-xs overflow-hidden shadow-lg rounded-xl bg-gray-800 text-white">
             <div class="px-6 py-4">
                 <div class="font-bold text-xl mb-2">{{ $event->name }}</div>
-                <p class="text-gray-400 text-base">{{ $event->descriptions }}</p>
+
                 <p class="text-gray-700 text-base">{{ $event->time }}</p>
             </div>
             <div class="px-6 pt-4">
-                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">#{{ $event->locations }}</span>
+                <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">Time End => {{ $event->timeEnd }}</span>
                 <!-- You can add additional tags for product attributes or categories -->
             </div>
             <div class="px-6 pt-4 pb-2 text-3xl">
-                <h1>Prix: <span class="text-red-400">{{ $event->price }} dh</span></h1>
+                <h1 class="text-xl">Table: <span class="text-blue-600">{{ $event->locations }}</span></h1>
             </div>
             <div class="px-6 pb-4">
                 <form action="{{ route('events.destroy', $event->id) }}" method="POST">

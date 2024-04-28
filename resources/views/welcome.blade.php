@@ -17,9 +17,9 @@
     <nav class="bg-[#00003A] h-[14vh] flex">
         <img class="xl:w-[6vw]  xl:ml-20" src="{{ asset('img/logo.png') }}" alt="">
         <div class="mx-auto flex justify-between items-center xl:w-[25vw]">
-            <a href="#"
+            <a href="{{ route('home') }}"
                 class="text-white xl:p-0 p-2 hover:text-[#FF8F05] hover:border-r-4 hover:px-1 transition-all">Home</a>
-            <a href="#"
+            <a href="{{ route('event.index') }}"
                 class="text-white xl:p-0 p-2 hover:text-[#FF8F05] hover:border-r-4 hover:px-1 transition-all">Reserve</a>
             <a href="#" class="text-white hover:text-[#FF8F05] hover:border-r-4 hover:px-1 transition-all">Contact
                 Us</a>
